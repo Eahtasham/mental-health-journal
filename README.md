@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mental Health Dashboard
+
+A comprehensive mental health tracking application built with Next.js, Tailwind CSS, and shadcn/ui components.
+
+Link-Vercel: https://mental-health-journal-tau.vercel.app/
+
+Link-Netlify: https://mental-health-journal.netlify.app/
+
+## Features
+
+- **Daily Quick Journal**: Track your daily mood, stress levels, energy levels, and gratitude
+- **Multiple Assessments**: Take assessments for low mood, anxiety, and depression
+- **Interactive Charts**: Visualize your mental health trends over time
+- **History Tracking**: View and filter your past journal entries and assessments
+- **Dark Mode Support**: Toggle between light and dark themes
+- **Responsive Design**: Works on mobile, tablet, and desktop devices
+- **Local Storage**: All data is stored locally in your browser
+
+## Tech Stack
+
+- **Next.js**: React framework for building the application
+- **Tailwind CSS**: Utility-first CSS framework for styling
+- **shadcn/ui**: High-quality UI components built with Radix UI and Tailwind
+- **Lucide React**: Beautiful, consistent icons
+- **Chart.js**: For data visualization
+- **date-fns**: For date manipulation and formatting
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18.0.0 or later
+- npm or yarn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/mental-health-dashboard.git
+   cd mental-health-dashboard
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies:
+   ```
+   npm install
+   # or
+   yarn install
+   ```
 
-## Learn More
+3. Run the development server:
+   ```
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `app/`: Next.js app directory with pages and layouts
+- `components/`: React components organized by feature
+- `hooks/`: Custom React hooks
+- `lib/`: Utility functions and helpers
+- `public/`: Static assets
 
-## Deploy on Vercel
+## Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Daily Journal**: Click on "Start Journal Entry" to record your daily mood and reflections
+2. **Assessments**: Take assessments for low mood, anxiety, or depression
+3. **View History**: Navigate to the History tab to view past entries
+4. **Analyze Trends**: Check the Charts tab to visualize your mental health data
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Customization
+
+- **Theme**: Toggle between light and dark mode using the theme button
+- **Colors**: Modify the color scheme in `globals.css`
+- **Components**: Customize UI components in the `components/ui` directory
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+
+- Created by Ehtasham Ummam for the Mental Health Hackathon
+- Weekly mental health journal with tags and mood charts
