@@ -4,7 +4,8 @@ import { useEffect, useState, useRef } from "react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { Calendar, LineChart, Activity, Brain, History, LayoutGrid, BarChart } from "lucide-react"
+import { motion, useAnimation } from "framer-motion"
+import { Calendar, LineChart, Activity, Brain, History, LayoutGrid, BarChart, Sparkles } from "lucide-react"
 import { JournalModal } from "@/components/journal-modal"
 import { LowMoodModal } from "@/components/low-mood-modal"
 import { AnxietyModal } from "@/components/anxiety-modal"
@@ -44,6 +45,7 @@ export default function Dashboard() {
   const [depressionOpen, setDepressionOpen] = useState(false)
   const [activeTab, setActiveTab] = useState("dashboard")
   const [historyType, setHistoryType] = useState<"journal" | "assessments">("journal")
+  const controls = useAnimation()
 
   const [journalEntries, setJournalEntries] = useLocalStorage<JournalEntry[]>("journal-entries", [])
   const [assessmentEntries, setAssessmentEntries] = useLocalStorage<AssessmentEntry[]>("assessment-entries", [])
@@ -62,6 +64,17 @@ export default function Dashboard() {
     }
   }, [journalEntries.length, setJournalEntries, setAssessmentEntries])
 
+  useEffect(() => {
+    controls.start({
+      rotateX: 180,
+      rotateY: 180,
+      transition: {
+        duration: 2,
+        ease: "easeOut",
+      },
+    })
+  }, [controls])
+
   const addJournalEntry = (entry: JournalEntry) => {
     setJournalEntries((prev) => [entry, ...prev])
   }
@@ -73,17 +86,45 @@ export default function Dashboard() {
   return (
     <div className="container mx-auto py-6 px-4 md:px-6">
       <div className="flex flex-col space-y-4">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-5xl font-bold tracking-tighter mb-2 relative">
-              <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-500">
-                Mental Health Dashboard
-              </span>
-            </h1>
-            <p className="text-muted-foreground">Track your mental wellbeing and monitor your progress over time.</p>
+        <div className="rounded-xl overflow-hidden mb-6">
+          <div className="animated-gradient p-8 relative">
+            <div className="absolute top-0 left-0 w-full h-full bg-black/10"></div>
+            <div className="relative z-10 flex justify-between items-center">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-6 w-6 text-white animate-pulse" />
+                  <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                    Mental  <span className="text-gradient">Health</span> Dashboard
+                  </h1>
+                </div>
+                <p className="text-white/80 max-w-lg">
+                  Track your mental wellbeing and monitor your progress over time with our interactive tools and
+                  visualizations.
+                </p>
+              </div>
+              <ThemeToggle />
+            </div>
+
+            {/* Animated particles */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full bg-white/30"
+                  style={{
+                    width: `${Math.random() * 30 + 10}px`,
+                    height: `${Math.random() * 40 + 10}px`,
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    animation: `floating ${Math.random() * 5 + 3}s ease-in-out infinite`,
+                    animationDelay: `${Math.random() * 5}s`,
+                  }}
+                ></div>
+              ))}
+            </div>
           </div>
-          <ThemeToggle />
         </div>
+
 
         <Tabs defaultValue="dashboard" value={activeTab} onValueChange={setActiveTab} className="space-y-4">
           <div className="bg-card rounded-lg p-1 shadow-sm border">
@@ -107,7 +148,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Quick Journal Card */}
               <Card className="overflow-hidden border-blue-200 dark:border-blue-900">
-                <CardHeader className="gradient-blue text-white">
+                <CardHeader className="gradient-blue text-white shimmer">
                   <CardTitle className="flex items-center gap-2">
                     <Calendar className="h-5 w-5" />
                     Daily Quick Journal
@@ -133,7 +174,7 @@ export default function Dashboard() {
 
               {/* Low Mood Assessment Card */}
               <Card className="border-indigo-200 dark:border-indigo-900">
-                <CardHeader className="gradient-purple text-white">
+                <CardHeader className="gradient-purple text-white shimmer">
                   <CardTitle className="flex items-center gap-2">
                     <Activity className="h-5 w-5" />
                     Low Mood Assessment
@@ -160,7 +201,7 @@ export default function Dashboard() {
 
               {/* Anxiety Assessment Card */}
               <Card className="border-amber-200 dark:border-amber-900">
-                <CardHeader className="gradient-amber text-white">
+                <CardHeader className="gradient-amber text-white shimmer">
                   <CardTitle className="flex items-center gap-2">
                     <LineChart className="h-5 w-5" />
                     Anxiety Assessment
@@ -187,7 +228,7 @@ export default function Dashboard() {
 
               {/* Depression Assessment Card */}
               <Card className="border-green-200 dark:border-green-900">
-                <CardHeader className="gradient-green text-white">
+                <CardHeader className="gradient-green text-white shimmer">
                   <CardTitle className="flex items-center gap-2">
                     <Brain className="h-5 w-5" />
                     Depression Assessment
